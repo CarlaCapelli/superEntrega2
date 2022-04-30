@@ -61,90 +61,90 @@ let cargarProductos = () => {
     divProducto.appendChild(cantidad);
     divProducto.appendChild(btn);
   }
-
-  let comprarProductos = () => {
-    let sumaTotal: number = 0;
-    let descuento: number = 0;
-    let totalDescuento: number = 0;
-    for (let i: number = 0; i < lista.length; i++) {
-      let bot = document.getElementById("boton" + [i]);
-      bot.addEventListener("click", () => {
-        let suma: number = 0;
-        let cantidad = document.getElementById("cantidad" + [i]);
-        let cantidadSeleccionada = Number(cantidad.value);
-
-        if (cantidadSeleccionada < 1 || cantidadSeleccionada > stock[i]) {
-          alert("no contamos con la cantidad seleccionada");
-        } else {
-          suma = suma + precio[i] * cantidadSeleccionada;
-          console.log(
-            "Agrego " + cantidadSeleccionada + " unidad/es de " + lista[i],
-            "el precio unitario es $" + precio[i]
-          );
-          console.log("La suma total de " + lista[i] + " es de $" + suma);
-          let divCompra = document.getElementById("compra");
-
-          let productoCompra = document.createElement("p");
-
-          productoCompra.innerHTML =
-            "Producto: " +
-            lista[i] +
-            " Precio/u: $" +
-            precio[i] +
-            " x " +
-            cantidadSeleccionada +
-            " = $" +
-            suma;
-          sumaTotal = sumaTotal + precio[i] * cantidadSeleccionada;
-          descuento = sumaTotal * 0.15;
-          totalDescuento = sumaTotal - descuento;
-
-          let divSumaTotal = document.getElementById("sumaTotal");
-          let divSumaTotalDesc = document.getElementById("sumaTotalDescuento");
-          divSumaTotal?.innerHTML = "El precio total es de: $" + sumaTotal;
-          divSumaTotalDesc?.innerHTML =
-            "El precio total con descuento es de: $" + totalDescuento;
-
-          divCompra.appendChild(productoCompra);
-
-          if (sumaTotal > 0) {
-            let btnComprar = document.getElementById("comprar");
-
-            btnComprar.classList.remove("desaparece");
-          }
-        }
-      });
-    }
-
-    let btnPagar = document.getElementById("pagar");
-    let btnComprar = document.getElementById("comprar");
-
-    btnComprar?.addEventListener("click", function () {
-      divElementos.innerHTML = null;
-      let divCompra = document.getElementById("compra");
-      divCompra.classList.remove("desaparece");
-      let titu = document.getElementById("titulo");
-      titu?.classList.add("desaparece");
-      btnComprar.classList.add("desaparece");
-      let btnPagar = document.getElementById("pagar");
-      btnPagar?.classList.remove("desaparece");
-    });
-    btnPagar.addEventListener("click", () => {
-      console.log("El total de su compra es :$" + sumaTotal);
-      console.log("El total de su compracon descuento es :$" + totalDescuento);
-      console.log("Gracias por su compra");
-      let gracias = document.getElementById("gracias");
-      gracias?.classList.remove("desaparece");
-      gracias?.classList.add("gracias");
-      let divSumaTotal = document.getElementById("sumaTotal");
-      let divSumaTotalDesc = document.getElementById("sumaTotalDescuento");
-      divSumaTotal.classList.add("desaparece");
-      divSumaTotalDesc.classList.add("desaparece");
-      let divCompra = document.getElementById("compra");
-      divCompra.classList.add("desaparece");
-      btnPagar?.classList.add("desaparece");
-    });
-  };
-  comprarProductos();
 };
+let comprarProductos = () => {
+  let sumaTotal: number = 0;
+  let descuento: number = 0;
+  let totalDescuento: number = 0;
+  for (let i: number = 0; i < lista.length; i++) {
+    let bot = document.getElementById("boton" + [i]);
+    bot.addEventListener("click", () => {
+      let suma: number = 0;
+      let cantidad = document.getElementById("cantidad" + [i]);
+      let cantidadSeleccionada = Number(cantidad.value);
+
+      if (cantidadSeleccionada < 1 || cantidadSeleccionada > stock[i]) {
+        alert("no contamos con la cantidad seleccionada");
+      } else {
+        suma = suma + precio[i] * cantidadSeleccionada;
+        console.log(
+          "Agrego " + cantidadSeleccionada + " unidad/es de " + lista[i],
+          "el precio unitario es $" + precio[i]
+        );
+        console.log("La suma total de " + lista[i] + " es de $" + suma);
+        let divCompra = document.getElementById("compra");
+
+        let productoCompra = document.createElement("p");
+
+        productoCompra.innerHTML =
+          "Producto: " +
+          lista[i] +
+          " Precio/u: $" +
+          precio[i] +
+          " x " +
+          cantidadSeleccionada +
+          " = $" +
+          suma;
+        sumaTotal = sumaTotal + precio[i] * cantidadSeleccionada;
+        descuento = sumaTotal * 0.15;
+        totalDescuento = sumaTotal - descuento;
+
+        let divSumaTotal = document.getElementById("sumaTotal");
+        let divSumaTotalDesc = document.getElementById("sumaTotalDescuento");
+        divSumaTotal?.innerHTML = "El precio total es de: $" + sumaTotal;
+        divSumaTotalDesc?.innerHTML =
+          "El precio total con descuento es de: $" + totalDescuento;
+
+        divCompra.appendChild(productoCompra);
+
+        if (sumaTotal > 0) {
+          let btnComprar = document.getElementById("comprar");
+
+          btnComprar.classList.remove("desaparece");
+        }
+      }
+    });
+  }
+
+  let btnPagar = document.getElementById("pagar");
+  let btnComprar = document.getElementById("comprar");
+
+  btnComprar?.addEventListener("click", function () {
+    divElementos.innerHTML = null;
+    let divCompra = document.getElementById("compra");
+    divCompra.classList.remove("desaparece");
+    let titu = document.getElementById("titulo");
+    titu?.classList.add("desaparece");
+    btnComprar.classList.add("desaparece");
+    let btnPagar = document.getElementById("pagar");
+    btnPagar?.classList.remove("desaparece");
+  });
+  btnPagar.addEventListener("click", () => {
+    console.log("El total de su compra es :$" + sumaTotal);
+    console.log("El total de su compracon descuento es :$" + totalDescuento);
+    console.log("Gracias por su compra");
+    let gracias = document.getElementById("gracias");
+    gracias?.classList.remove("desaparece");
+    gracias?.classList.add("gracias");
+    let divSumaTotal = document.getElementById("sumaTotal");
+    let divSumaTotalDesc = document.getElementById("sumaTotalDescuento");
+    divSumaTotal.classList.add("desaparece");
+    divSumaTotalDesc.classList.add("desaparece");
+    let divCompra = document.getElementById("compra");
+    divCompra.classList.add("desaparece");
+    btnPagar?.classList.add("desaparece");
+  });
+};
+
 cargarProductos();
+comprarProductos();
